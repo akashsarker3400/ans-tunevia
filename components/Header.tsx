@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
 interface HeaderProps {
-  onNavigate: (page: 'home' | 'publishing' | 'services' | 'faq' | 'video' | 'pricing') => void;
-  currentPage: 'home' | 'publishing' | 'services' | 'faq' | 'video' | 'pricing';
+  onNavigate: (page: 'home' | 'publishing' | 'services' | 'faq' | 'video' | 'pricing' | 'login' | 'signup') => void;
+  currentPage: string;
 }
 
 const Header: React.FC<HeaderProps> = ({ onNavigate, currentPage }) => {
@@ -17,7 +17,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentPage }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNav = (page: 'home' | 'publishing' | 'services' | 'faq' | 'video' | 'pricing', e?: React.MouseEvent) => {
+  const handleNav = (page: any, e?: React.MouseEvent) => {
     if (e) e.preventDefault();
     onNavigate(page);
     setIsMenuOpen(false);
@@ -39,9 +39,21 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentPage }) => {
           <button onClick={() => handleNav('publishing')} className={`hover:text-brand-green transition-colors ${currentPage === 'publishing' ? 'text-brand-green' : ''}`}>Publishing</button>
           <button onClick={() => handleNav('faq')} className={`hover:text-brand-green transition-colors ${currentPage === 'faq' ? 'text-brand-green' : ''}`}>FAQ</button>
           <button onClick={() => handleNav('pricing')} className={`hover:text-brand-green transition-colors ${currentPage === 'pricing' ? 'text-brand-green' : ''}`}>Pricing</button>
-          <button className="bg-brand-green text-brand-black px-6 py-2.5 rounded-full font-bold hover:scale-105 transition-transform active:scale-95 shadow-[0_0_20px_rgba(114,255,79,0.3)]">
-            Get Started
-          </button>
+          
+          <div className="flex items-center gap-6 ml-4 border-l border-white/10 pl-8">
+            <button 
+              onClick={() => handleNav('login')}
+              className="text-gray-400 hover:text-white transition-colors"
+            >
+              Log In
+            </button>
+            <button 
+              onClick={() => handleNav('signup')}
+              className="bg-brand-green text-brand-black px-6 py-2.5 rounded-full font-bold hover:scale-105 transition-transform active:scale-95 shadow-[0_0_20px_rgba(114,255,79,0.3)]"
+            >
+              Get Started
+            </button>
+          </div>
         </nav>
 
         {/* Mobile Toggle */}
@@ -59,7 +71,9 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentPage }) => {
           <button onClick={() => handleNav('publishing')} className="text-left py-2 font-medium">Publishing</button>
           <button onClick={() => handleNav('faq')} className="text-left py-2 font-medium">FAQ</button>
           <button onClick={() => handleNav('pricing')} className="text-left py-2 font-medium">Pricing</button>
-          <button className="bg-brand-green text-brand-black px-6 py-3 rounded-full font-bold">
+          <hr className="border-white/5" />
+          <button onClick={() => handleNav('login')} className="text-left py-2 font-medium text-brand-blue">Log In</button>
+          <button onClick={() => handleNav('signup')} className="bg-brand-green text-brand-black px-6 py-3 rounded-full font-bold">
             Get Started
           </button>
         </div>

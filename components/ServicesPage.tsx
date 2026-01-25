@@ -27,9 +27,10 @@ import {
 
 interface ServicesPageProps {
   onNavigateToYoutube?: () => void;
+  onGetStarted?: () => void;
 }
 
-const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigateToYoutube }) => {
+const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigateToYoutube, onGetStarted }) => {
   const fadeInUp = {
     initial: { opacity: 0, y: 30 },
     whileInView: { opacity: 1, y: 0 },
@@ -289,7 +290,10 @@ const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigateToYoutube }) => {
                 <p className="text-brand-black/70 mb-12 max-w-sm font-medium leading-relaxed text-lg">
                   Launch your global career with 100% ownership and professional-grade distribution pathways.
                 </p>
-                <button className="bg-brand-black text-white px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform flex items-center gap-3">
+                <button 
+                  onClick={onGetStarted}
+                  className="bg-brand-black text-white px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform flex items-center gap-3"
+                >
                   Start Distribution <ArrowRight size={20} />
                 </button>
               </div>
@@ -308,7 +312,10 @@ const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigateToYoutube }) => {
                 <p className="text-brand-black/70 mb-12 max-w-sm font-medium leading-relaxed text-lg">
                   Scalable infrastructure for established catalogs, high-volume release cycles, and API-driven delivery.
                 </p>
-                <button className="bg-brand-black text-white px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform flex items-center gap-3">
+                <button 
+                  onClick={onGetStarted}
+                  className="bg-brand-black text-white px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform flex items-center gap-3"
+                >
                   Enterprise Onboarding <ArrowRight size={20} />
                 </button>
               </div>

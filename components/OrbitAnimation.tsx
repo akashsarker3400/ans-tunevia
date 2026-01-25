@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { DollarSign } from 'lucide-react';
+import { Wallet } from 'lucide-react';
 import DSPIcon from './DSPIcon';
 import { DSPIconName } from '../types';
 
@@ -15,14 +15,14 @@ const OrbitAnimation: React.FC = () => {
       <div className="absolute w-3/4 h-3/4 bg-brand-blue/10 rounded-full blur-[100px] animate-pulse-slow" />
       <div className="absolute w-1/2 h-1/2 bg-brand-purple/10 rounded-full blur-[80px]" />
 
-      {/* Center Symbol */}
+      {/* Center Symbol - Updated from DollarSign to Wallet */}
       <motion.div 
         className="relative z-20 w-24 h-24 md:w-32 md:h-32 bg-brand-black border-2 border-brand-green/30 rounded-full flex items-center justify-center shadow-[0_0_40px_rgba(114,255,79,0.2)]"
         animate={{ scale: [1, 1.05, 1] }}
         transition={{ duration: 4, repeat: Infinity }}
       >
         <div className="absolute inset-0 bg-brand-green/5 rounded-full blur-xl" />
-        <DollarSign size={48} className="text-brand-green drop-shadow-[0_0_10px_rgba(114,255,79,0.5)]" />
+        <Wallet size={48} className="text-brand-green drop-shadow-[0_0_10px_rgba(114,255,79,0.5)]" />
       </motion.div>
 
       {/* Inner Ring */}

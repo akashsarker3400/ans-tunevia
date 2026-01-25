@@ -24,7 +24,12 @@ import {
   Layers
 } from 'lucide-react';
 
-const YoutubeCMSPage: React.FC = () => {
+// Added interface for YoutubeCMSPage props to handle onGetStarted action
+interface YoutubeCMSPageProps {
+  onGetStarted?: () => void;
+}
+
+const YoutubeCMSPage: React.FC<YoutubeCMSPageProps> = ({ onGetStarted }) => {
   const fadeInUp = {
     initial: { opacity: 0, y: 30 },
     whileInView: { opacity: 1, y: 0 },
@@ -81,7 +86,11 @@ const YoutubeCMSPage: React.FC = () => {
               Maximize Revenue: Join the TuneVia YouTube CMS/MCN. Secure your content, unlock higher earnings, and benefit from premium optimization strategies.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <button className="bg-red-600 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-red-700 transition-all flex items-center gap-3 shadow-[0_0_30px_rgba(220,38,38,0.3)]">
+              {/* Linked to onGetStarted */}
+              <button 
+                onClick={onGetStarted}
+                className="bg-red-600 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-red-700 transition-all flex items-center gap-3 shadow-[0_0_30px_rgba(220,38,38,0.3)]"
+              >
                 Check Eligibility Now <ArrowRight size={20} />
               </button>
             </div>
@@ -302,7 +311,11 @@ const YoutubeCMSPage: React.FC = () => {
       <section className="py-24 relative">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-4xl md:text-5xl font-heading font-bold mb-8">Ready to Optimize Your Channel?</h2>
-          <button className="bg-white text-brand-black px-12 py-5 rounded-full font-bold text-xl hover:scale-105 transition-all shadow-[0_0_40px_rgba(255,255,255,0.2)]">
+          {/* Linked to onGetStarted */}
+          <button 
+            onClick={onGetStarted}
+            className="bg-white text-brand-black px-12 py-5 rounded-full font-bold text-xl hover:scale-105 transition-all shadow-[0_0_40px_rgba(255,255,255,0.2)]"
+          >
             Apply for CMS Linking
           </button>
           <p className="mt-6 text-gray-500 text-sm">Application review typically takes 3-5 business days.</p>

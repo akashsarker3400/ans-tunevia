@@ -30,7 +30,11 @@ import {
   Info
 } from 'lucide-react';
 
-const VideoPage: React.FC = () => {
+interface VideoPageProps {
+  onGetStarted?: () => void;
+}
+
+const VideoPage: React.FC<VideoPageProps> = ({ onGetStarted }) => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [hoveredFeature, setHoveredFeature] = useState<number | null>(null);
 
@@ -149,10 +153,16 @@ const VideoPage: React.FC = () => {
               Direct pathways to premium visual platforms with institutional-grade tech.
             </p>
             <div className="flex flex-wrap justify-center gap-6">
-              <button className="bg-brand-blue text-white px-10 py-5 rounded-full font-bold text-lg hover:scale-105 hover:shadow-[0_0_30px_rgba(58,205,255,0.6)] transition-all flex items-center gap-3 shadow-[0_0_40px_rgba(58,205,255,0.3)]">
+              <button 
+                onClick={onGetStarted}
+                className="bg-brand-blue text-white px-10 py-5 rounded-full font-bold text-lg hover:scale-105 hover:shadow-[0_0_30px_rgba(58,205,255,0.6)] transition-all flex items-center gap-3 shadow-[0_0_40px_rgba(58,205,255,0.3)]"
+              >
                 Start Distributing Videos <Play size={20} fill="currentColor" />
               </button>
-              <button className="bg-white/5 border border-white/10 px-10 py-5 rounded-full font-bold text-lg hover:bg-white/10 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all">
+              <button 
+                onClick={onGetStarted}
+                className="bg-white/5 border border-white/10 px-10 py-5 rounded-full font-bold text-lg hover:bg-white/10 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all"
+              >
                 Enterprise Solutions
               </button>
             </div>
@@ -299,7 +309,10 @@ const VideoPage: React.FC = () => {
                   </ul>
                 </div>
               </div>
-              <button className="flex items-center gap-2 text-brand-green font-bold hover:gap-4 hover:scale-105 transition-all">
+              <button 
+                onClick={onGetStarted}
+                className="flex items-center gap-2 text-brand-green font-bold hover:gap-4 hover:scale-105 transition-all"
+              >
                 Learn about VEVO Onboarding <ArrowRight size={20} />
               </button>
             </div>
@@ -519,7 +532,10 @@ const VideoPage: React.FC = () => {
            <div className="max-w-4xl mx-auto p-12 lg:p-20 rounded-[4rem] bg-white/5 border border-white/10 group">
               <h2 className="text-5xl font-heading font-bold mb-8">Distribute Your Videos <br/>With TuneVia</h2>
               <p className="text-xl text-gray-400 mb-12">Institutional-grade onboarding. Optimized royalties. Unified monetization.</p>
-              <button className="bg-brand-blue text-white px-12 py-5 rounded-full font-bold text-xl hover:scale-105 hover:shadow-[0_0_35px_rgba(58,205,255,0.7)] transition-all flex items-center gap-3 mx-auto shadow-[0_0_40px_rgba(58,205,255,0.3)]">
+              <button 
+                onClick={onGetStarted}
+                className="bg-brand-blue text-white px-12 py-5 rounded-full font-bold text-xl hover:scale-105 hover:shadow-[0_0_35px_rgba(58,205,255,0.7)] transition-all flex items-center gap-3 mx-auto shadow-[0_0_40px_rgba(58,205,255,0.3)]"
+              >
                  Onboard Your Catalog <ArrowRight size={24} />
               </button>
            </div>

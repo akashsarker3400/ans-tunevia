@@ -19,7 +19,11 @@ import {
   Crown
 } from 'lucide-react';
 
-const PricingPage: React.FC = () => {
+interface PricingPageProps {
+  onGetStarted?: () => void;
+}
+
+const PricingPage: React.FC<PricingPageProps> = ({ onGetStarted }) => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [hoveredRow, setHoveredRow] = useState<number | null>(null);
 
@@ -168,7 +172,9 @@ const PricingPage: React.FC = () => {
                       </li>
                     ))}
                   </ul>
-                  <button className={`w-full py-5 rounded-2xl font-bold transition-all ${
+                  <button 
+                    onClick={onGetStarted}
+                    className={`w-full py-5 rounded-2xl font-bold transition-all ${
                     plan.isFeatured 
                     ? 'bg-brand-green text-brand-black shadow-[0_0_30px_rgba(114,255,79,0.3)] hover:scale-[1.02]' 
                     : 'bg-white/10 text-white hover:bg-white/20'
@@ -300,10 +306,16 @@ const PricingPage: React.FC = () => {
               <h2 className="text-5xl font-heading font-bold mb-8 text-white">Join the Independent <br/>Revolution</h2>
               <p className="text-xl text-white/80 mb-12">Start your subscription today. Grow without limits.</p>
               <div className="flex flex-wrap justify-center gap-6">
-                <button className="bg-white text-brand-black px-12 py-5 rounded-full font-bold text-xl hover:scale-105 transition-transform flex items-center gap-3">
+                <button 
+                  onClick={onGetStarted}
+                  className="bg-white text-brand-black px-12 py-5 rounded-full font-bold text-xl hover:scale-105 transition-transform flex items-center gap-3"
+                >
                   Get Started <ArrowRight size={24} />
                 </button>
-                <button className="bg-transparent border border-white/30 text-white px-12 py-5 rounded-full font-bold text-xl hover:bg-white/10 transition-colors">
+                <button 
+                  onClick={onGetStarted}
+                  className="bg-transparent border border-white/30 text-white px-12 py-5 rounded-full font-bold text-xl hover:bg-white/10 transition-colors"
+                >
                   Contact Sales
                 </button>
               </div>

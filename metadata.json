@@ -1,5 +1,13 @@
 {
   "name": "TuneVia - Future of Music Distribution",
-  "description": "A premium music distribution platform landing page featuring futuristic UI, neon aesthetics, and a dynamic DSP orbit animation.",
+  "description": "Premium music distribution platform featuring futuristic UI, global DSP delivery, and publishing administration.",
+  "keywords": [
+    "music distribution",
+    "royalties",
+    "independent artists",
+    "spotify",
+    "apple music",
+    "publishing"
+  ],
   "requestFramePermissions": []
 }

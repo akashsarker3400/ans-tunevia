@@ -3,7 +3,11 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
 
-const Pricing: React.FC = () => {
+interface PricingProps {
+  onGetStarted?: () => void;
+}
+
+const Pricing: React.FC<PricingProps> = ({ onGetStarted }) => {
   const plans = [
     {
       name: "Artist",
@@ -103,7 +107,9 @@ const Pricing: React.FC = () => {
                 ))}
               </ul>
 
-              <button className={`w-full py-4 rounded-2xl font-bold transition-all ${
+              <button 
+                onClick={onGetStarted}
+                className={`w-full py-4 rounded-2xl font-bold transition-all ${
                 plan.isFeatured 
                 ? 'bg-brand-green text-brand-black hover:shadow-[0_0_20px_rgba(114,255,79,0.4)]' 
                 : 'bg-white/5 text-white hover:bg-white/10'
@@ -121,10 +127,16 @@ const Pricing: React.FC = () => {
               Stream & Distribute Your Music <br /> Without a Label
             </h2>
             <div className="flex flex-wrap justify-center gap-4">
-               <button className="bg-white text-brand-black px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform">
+               <button 
+                onClick={onGetStarted}
+                className="bg-white text-brand-black px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform"
+               >
                   Get Started
                </button>
-               <button className="bg-transparent border border-white/30 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-colors">
+               <button 
+                onClick={onGetStarted}
+                className="bg-transparent border border-white/30 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-colors"
+               >
                   View Detailed Pricing
                </button>
             </div>
