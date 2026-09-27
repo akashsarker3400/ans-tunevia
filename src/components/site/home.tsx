@@ -3,9 +3,10 @@
 import Link from "next/link";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 
-import { cta, faq, hero, heroStores, pillars, plans, steps, stores, why } from "@/data/site";
+import { cta, faq, hero, pillars, plans, steps, why } from "@/data/site";
 import { cn } from "@/lib/utils";
-import { ArrowRight, Check, Dsp, Reveal, Rule, Section } from "./shared";
+import { ArrowRight, Check, Reveal, Rule, Section } from "./shared";
+import { Pipeline, Splits, StepLine, Words } from "./motion";
 import { Faq } from "./faq";
 
 /* ---------------- Hero ---------------- */
@@ -14,19 +15,23 @@ export function Hero() {
   const reduce = useReducedMotion();
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 600], [0, -20]);
-  const picks = heroStores.map((id) => stores.find((s) => s.id === id)!).filter(Boolean);
 
   return (
-    <section className="border-b border-line pt-12 pb-16 md:pt-20 md:pb-24">
-      <div className="container-x grid items-center gap-12 lg:grid-cols-12">
+    <section className="relative border-b border-line pt-12 pb-16 md:pt-20 md:pb-24">
+      <div aria-hidden className="grid-bg pointer-events-none absolute inset-0" />
+      <div className="container-x relative grid items-center gap-12 lg:grid-cols-12">
         <div className="lg:col-span-7">
           <div className="flex items-center gap-3">
             <Rule />
             <span className="label">{hero.kicker}</span>
           </div>
-          <h1 className="text-h1 mt-8 max-w-[20ch] text-[clamp(40px,5vw,66px)]">{hero.title}</h1>
-          <p className="mt-6 max-w-[56ch] text-[clamp(17px,1.35vw,19px)] leading-[1.6] text-ink-muted">{hero.lead}</p>
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+          <h1 className="text-h1 mt-8 max-w-[20ch] text-[clamp(40px,5vw,66px)]">
+            <Words text={hero.title} />
+          </h1>
+          <Reveal delay={0.35}>
+            <p className="mt-6 max-w-[56ch] text-[clamp(17px,1.35vw,19px)] leading-[1.6] text-ink-muted">{hero.lead}</p>
+          </Reveal>
+          <Reveal delay={0.45} className="mt-9 flex flex-col gap-3 sm:flex-row">
             <Link href={cta.href} className="btn-primary">
               {cta.label}
               <ArrowRight className="size-4" />
@@ -34,7 +39,7 @@ export function Hero() {
             <Link href="/pricing" className="btn-ghost">
               See pricing
             </Link>
-          </div>
+          </Reveal>
           <ul className="mt-9 grid gap-2.5 text-[15px] text-ink-muted sm:grid-cols-1">
             {hero.points.map((p) => (
               <li key={p} className="flex items-center gap-2.5">
@@ -46,44 +51,11 @@ export function Hero() {
         </div>
 
         <motion.div style={reduce ? undefined : { y }} className="lg:col-span-5">
-          <div className="card p-5 md:p-6">
-            <div className="flex items-center justify-between">
-              <span className="label">Delivery board</span>
-              <span className="font-mono text-[12px] text-green-ink">{stores.length} stores</span>
-            </div>
-            <ul className="mt-5 grid grid-cols-4 gap-3 sm:grid-cols-6 lg:grid-cols-4">
-              {picks.map((s) => (
-                <li key={s.id} className="flex flex-col items-center gap-2 rounded-[10px] border border-line bg-background p-3">
-                  <Dsp id={s.id} name={s.name} size={36} />
-                  <span className="max-w-full truncate text-[11px] text-ink-muted">{s.name}</span>
-                </li>
-              ))}
-            </ul>
-            <Link href="/stores" className="mt-5 inline-flex items-center gap-1.5 text-[14px] font-medium text-ink hover:text-green-ink">
-              All stores
-              <ArrowRight className="size-4" />
-            </Link>
-          </div>
+          <Reveal delay={0.2}>
+            <Pipeline />
+          </Reveal>
         </motion.div>
       </div>
-    </section>
-  );
-}
-
-/* ---------------- Store strip ---------------- */
-
-export function StoreStrip() {
-  const row = stores.slice(0, 24);
-  return (
-    <section aria-label="Stores" className="container-x py-10">
-      <ul className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
-        {row.map((s) => (
-          <li key={s.id} className="flex items-center gap-2 text-[13px] text-ink-muted">
-            <Dsp id={s.id} size={22} />
-            {s.name}
-          </li>
-        ))}
-      </ul>
     </section>
   );
 }
@@ -93,10 +65,11 @@ export function StoreStrip() {
 export function Steps() {
   return (
     <Section id="how" label="How it works" title="Three steps. No paperwork." tone="surface">
-      <ol className="mt-12 grid gap-4 md:grid-cols-3">
+      <ol className="relative mt-12 grid gap-4 md:grid-cols-3">
+        <StepLine />
         {steps.map((s, i) => (
-          <Reveal key={s.title} delay={i * 0.06} className="card flex h-full flex-col bg-background p-7">
-            <span className="font-mono text-[13px] text-green-ink">0{i + 1}</span>
+          <Reveal key={s.title} delay={i * 0.12} className="card card-hover relative flex h-full flex-col bg-background p-7">
+            <span className="inline-flex size-8 items-center justify-center rounded-full border border-green bg-background font-mono text-[12px] text-green-ink">0{i + 1}</span>
             <h3 className="text-h3 mt-8">{s.title}</h3>
             <p className="mt-2 text-[15px] text-ink-muted">{s.text}</p>
           </Reveal>
@@ -144,7 +117,7 @@ export function Why() {
     <Section id="why" label="Why Tunevia" title="Built by a label, for people who release music." tone="surface">
       <div className="mt-12 grid gap-px overflow-hidden rounded-[14px] border border-line bg-line sm:grid-cols-2">
         {why.map((w, i) => (
-          <Reveal key={w.title} delay={i * 0.05} className="bg-background p-7 md:p-8">
+          <Reveal key={w.title} delay={i * 0.05} className="bg-background p-7 transition-colors hover:bg-surface md:p-8">
             <h3 className="text-h3">{w.title}</h3>
             <p className="mt-2 text-[15px] text-ink-muted">{w.text}</p>
           </Reveal>
@@ -160,7 +133,7 @@ export function PricingCards({ compact = false }: { compact?: boolean }) {
   return (
     <div className={cn("grid gap-4 lg:grid-cols-3", compact ? "mt-12" : "mt-10")}>
       {plans.map((p, i) => (
-        <Reveal key={p.name} delay={i * 0.05} className={cn("card flex h-full flex-col p-7 md:p-8", p.featured && "border-green")}>
+        <Reveal key={p.name} delay={i * 0.08} className={cn("card card-hover flex h-full flex-col p-7 md:p-8", p.featured && "border-green")}>
           <div className="flex items-center justify-between">
             <span className="label">{p.name}</span>
             {p.featured && <span className="rounded-full bg-green px-2.5 py-1 font-mono text-[11px] font-medium text-background">Most chosen</span>}
@@ -191,6 +164,16 @@ export function PricingHome() {
   return (
     <Section id="pricing" label="Pricing" title="One yearly price. Unlimited releases." sub="No per-release or per-store fees. 100% of distribution royalties on every plan." action={<Link href="/pricing" className="btn-ghost btn-sm">Compare plans</Link>}>
       <PricingCards compact />
+    </Section>
+  );
+}
+
+/* ---------------- Money ---------------- */
+
+export function Money() {
+  return (
+    <Section id="money" label="The money" title="Where every dollar goes." sub="No hidden splits. These are the only percentages Tunevia ever takes, and none of them touch your ownership.">
+      <Splits />
     </Section>
   );
 }

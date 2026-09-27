@@ -1,4 +1,5 @@
-import { FaqHome, Hero, Pillars, PricingHome, Steps, StoreStrip, Why } from "@/components/site/home";
+import { FaqHome, Hero, Money, Pillars, PricingHome, Steps, Why } from "@/components/site/home";
+import { LogoMarquee } from "@/components/site/motion";
 import { Cta } from "@/components/site/shared";
 import { faq, site } from "@/data/site";
 
@@ -13,9 +14,10 @@ export default function Home() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <Hero />
-      <StoreStrip />
+      <LogoMarquee />
       <Steps />
       <Pillars />
+      <Money />
       <Why />
       <PricingHome />
       <FaqHome />

@@ -141,10 +141,37 @@
   .link {
     @apply text-green-ink underline-offset-4 hover:underline;
   }
+  .card-hover:hover {
+    border-color: color-mix(in oklab, var(--green) 45%, var(--line));
+  }
+  .marquee-track {
+    animation: marquee 48s linear infinite;
+  }
+  .marquee-reverse {
+    animation-direction: reverse;
+  }
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+  /* crisp 1px grid, fades to the page edge with a hard-edged mask (no blur) */
+  .grid-bg {
+    background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.28), transparent 70%);
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  .marquee-track {
+    animation: none;
   }
 }

@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
 import { cta, nav, site } from "@/data/site";
+import { ScrollProgress } from "./motion";
 import { cn } from "@/lib/utils";
 
 export function Wordmark({ className }: { className?: string }) {
@@ -39,6 +40,7 @@ export function Header() {
   return (
     <>
       <header className={cn("fixed inset-x-0 top-0 z-50 h-[72px] border-b bg-background transition-colors", scrolled ? "border-line" : "border-transparent")}>
+        <ScrollProgress />
         <div className="container-x flex h-full items-center justify-between gap-4">
           <Link href="/" className="flex items-center" aria-label={site.name}>
             <Wordmark />
