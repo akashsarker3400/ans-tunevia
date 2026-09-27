@@ -1,0 +1,6 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    { "name": "tunevia", "runtimeExecutable": "npx", "runtimeArgs": ["next", "dev", "-p", "3500"], "port": 3500 }
+  ]
+}

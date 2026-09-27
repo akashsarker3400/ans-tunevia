@@ -1,0 +1,150 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Tunevia: dark, premium, exact. Graphite surfaces, one accent (Tunevia green), 1px lines. No glow, no blur. */
+:root {
+  --bg: #0b0c0b;
+  --surface: #121412;
+  --surface-2: #181b18;
+  --ink: #f3f5f2;
+  --ink-muted: #9aa39b;
+  --line: #262a26;
+  --line-strong: #3a403a;
+  --green: #72ff4f;
+  --green-ink: #9bff7f;
+  --green-deep: #1f4a17;
+
+  --background: var(--bg);
+  --foreground: var(--ink);
+  --card: var(--surface);
+  --card-foreground: var(--ink);
+  --popover: var(--surface);
+  --popover-foreground: var(--ink);
+  --primary: var(--green);
+  --primary-foreground: #0b0c0b;
+  --secondary: var(--surface-2);
+  --secondary-foreground: var(--ink);
+  --muted: var(--surface-2);
+  --muted-foreground: var(--ink-muted);
+  --accent: var(--surface-2);
+  --accent-foreground: var(--ink);
+  --destructive: #ff5f56;
+  --border: var(--line);
+  --input: var(--line);
+  --ring: var(--green);
+  --radius: 0.875rem;
+}
+
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: var(--ink);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-green: var(--green);
+  --color-green-ink: var(--green-ink);
+  --color-green-deep: var(--green-deep);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--line);
+  --color-input: var(--line);
+  --color-ring: var(--ring);
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+}
+
+@layer base {
+  * {
+    @apply border-line outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 88px;
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-background font-sans text-foreground antialiased;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: clip;
+  }
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+  :focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: 2px;
+  }
+  ::selection {
+    background: var(--green);
+    color: var(--bg);
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-[1200px] px-5 sm:px-8;
+  }
+  .label {
+    @apply font-mono text-[12px] font-medium uppercase tracking-[0.12em] text-ink-muted;
+  }
+  .text-h1 {
+    @apply text-[clamp(40px,5.4vw,72px)] leading-[1.0] font-semibold tracking-[-0.03em];
+  }
+  .text-h2 {
+    @apply text-[clamp(30px,3.4vw,46px)] leading-[1.06] font-semibold tracking-[-0.025em];
+  }
+  .text-h3 {
+    @apply text-[clamp(19px,1.5vw,22px)] leading-[1.25] font-semibold tracking-[-0.01em];
+  }
+  .card {
+    @apply rounded-[14px] border border-line bg-surface;
+  }
+  .card-hover {
+    @apply transition-[transform,border-color] duration-300 ease-out hover:-translate-y-0.5 hover:border-line-strong;
+  }
+  .btn,
+  .btn-primary,
+  .btn-ghost {
+    @apply inline-flex h-12 items-center justify-center gap-2 rounded-[10px] px-5 text-[15px] font-medium transition-[background-color,border-color,color,transform] duration-200 ease-out active:translate-y-px;
+  }
+  .btn-primary {
+    @apply bg-green text-background hover:bg-[#8cff6e];
+  }
+  .btn-ghost {
+    @apply border border-line-strong text-ink hover:border-ink;
+  }
+  .btn-sm {
+    @apply h-10 px-4 text-[14px];
+  }
+  .link {
+    @apply text-green-ink underline-offset-4 hover:underline;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
