@@ -1,20 +1,27 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# tunevia.com
 
-# Run and deploy your AI Studio app
+Marketing site for Tunevia, the music distribution and publishing service built and operated by ANS Music.
 
-This contains everything you need to run your app locally.
+Next.js 16 (App Router), Tailwind v4, deployed as a standalone Docker image on Coolify (port 3000).
 
-View your app in AI Studio: https://ai.studio/apps/drive/1IQy3gjf6K8wehb8brNed42BZ0vndZD1b
+## Develop
 
-## Run Locally
+```bash
+npm ci
+npm run dev
+```
 
-**Prerequisites:**  Node.js
+## Where things live
 
+- `src/data/site.ts`: every word of copy, plans, feature matrix, FAQ and the store list. Edit here, not in components.
+- `src/app/*`: one folder per route. Legal pages use `src/components/site/legal.tsx`.
+- `src/components/site/*`: header, footer, home sections, shared primitives.
+- `public/dsp/*.svg`: store logos (from `@akashsarker/dsp-icons`, vendored).
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Rules for copy
+
+Only verified claims. No artist counts, store counts, delivery-time or support-hour promises unless they are plan terms stated in `site.ts`. Calls to action lead to `/contact`; accounts are opened by the team over email.
+
+## Deploy
+
+Coolify builds the `Dockerfile` on the `main` branch. `/distribution-partners` redirects to `/stores`; `/login` and `/signup` redirect to `/contact`.
