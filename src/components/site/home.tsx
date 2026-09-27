@@ -24,7 +24,7 @@ export function Hero() {
             <Rule />
             <span className="label">{hero.kicker}</span>
           </div>
-          <h1 className="text-h1 mt-8 max-w-[17ch]">{hero.title}</h1>
+          <h1 className="text-h1 mt-8 max-w-[20ch] text-[clamp(40px,5vw,66px)]">{hero.title}</h1>
           <p className="mt-6 max-w-[56ch] text-[clamp(17px,1.35vw,19px)] leading-[1.6] text-ink-muted">{hero.lead}</p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <Link href={cta.href} className="btn-primary">
